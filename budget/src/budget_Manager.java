@@ -10,7 +10,7 @@ public class budget_Manager {
 
         private final int ADD_PURCHASE = 1;
         private final int SHOW_ALL_PURCHASES = 2;
-        private final int SHOW_CURRENT_BUDGET = 3;
+        private final int SHOW_CURRENT_BUDGET= 3;
         private final int CHANGE_CONTRIBUTIONS = 4;
         private final int CHANGE_COSTS = 5;
         private final int QUIT = 6;
