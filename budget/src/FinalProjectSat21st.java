@@ -6,6 +6,7 @@ public class FinalProjectSat21st {
 
         budget_Manager manager = new budget_Manager();
         manager.manageCalls();
+
     }
 
 }

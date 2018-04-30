@@ -26,7 +26,8 @@ public class budget_Manager {
                 CHANGE_COSTS + ". Change monthly costs ",
                 QUIT + ". Quit"};
 
-        /* The main menu */
+        budgetGUI BudgetGUI = new budgetGUI(this);
+                /* The main menu */
         void manageCalls() {
 
             boolean quit = false;
