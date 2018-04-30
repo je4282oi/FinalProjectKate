@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by je4282oi on 4/11/2018.
  */
@@ -6,7 +9,7 @@ public class monthWithDetails extends month {
     //Should this be a hashmap with prices and descriptiosn? But then the prices have to be unique.
 
     public monthWithDetails (ArrayList<String> individualPurchases, String name,
-                             HashMap<String, double> catsAndTotals, double totalSaved) {
+                             HashMap<String, Double> catsAndTotals, double totalSaved) {
         //Parent class constructs these variables:
         super (name, catsAndTotals, totalSaved);
         //initialize spending arraylist:

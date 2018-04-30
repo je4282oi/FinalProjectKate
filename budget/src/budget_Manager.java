@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -85,13 +87,22 @@ public class budget_Manager {
                     "school, other");
             String type = user_input.nextLine();
             if (type.equalsIgnoreCase("home")) {
-                System.out.println("Enter description of purchase: ");
-                String description = user_input.nextLine();
-                System.out.println("Enter amount of purchase: ");
+                System.out.println("Enter name of month: ");
+                String month = user_input.nextLine();
+                System.out.println("Enter total purchases: ");
                 double amount = Double.parseDouble(user_input.nextLine());
-                System.out.println("Extra information? ");
-                String extra = user_input.nextLine();
-                homePurchase newPurchase = new homePurchase(extra, description, amount);
+                //System.out.println("Enter category names and totals ");
+                //HashMap<String, Double> extra = user_input.nextLine();
+                HashMap<String, Double> extra = new HashMap<>();
+                ArrayList<String> extraDetail = new ArrayList<>();
+                System.out.println("Enter individual purchases for extra info:");
+                {
+                    String temp = user_input.nextLine();
+                    extraDetail.add(temp);
+
+                    while (temp != null);
+                }
+                //monthWithDetails newMonth = new monthWithDetails(extraDetail, month, extra, amount);
             }
         }
 
