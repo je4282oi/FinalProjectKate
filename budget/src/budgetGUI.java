@@ -37,6 +37,8 @@ public class budgetGUI extends JFrame{
     public static String typeTravel = "Travel purchase";
     public static String typePersonal = "Personal purchase";
 
+    month newMonth = new month();
+
     //constructor:
     budgetGUI (budget_Manager manager) {
 
@@ -44,8 +46,9 @@ public class budgetGUI extends JFrame{
 
         //Populates comboBox with static types of purchase
         setComboBox();
-        //actionHandling();
+        actionHandling();
         //setJList();
+        month newMonth = new month();
 
         setContentPane(mainPanel);
         pack();
@@ -63,27 +66,38 @@ public class budgetGUI extends JFrame{
     }
 
     public void actionHandling() {
+
         //TODO: Set so that dataEntryPanel only displays when addMonth pushed
         //Use Custom Create?
         addMonthbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setContentPane(dataEntryPanel);
-                setVisible(true);
-            }
-        });
+                setVisible(true);  } });
 
+        //Set newMonth's name using object setter
         whichMonthTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                newMonth.setName(whichMonthTextField.getText());}  });
 
-            }
-        });
-
+        //Set newMonth's hashmap using object setter
         purchaseAmountTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setTotals(); }  });
+                newMonth.setCatsAndTotals(setTotals()); }  });
+
+        //Preview newMonth's data
+        previewMonthButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setContentPane(displayPanel);
+                previewMonthTextArea.setText(newMonth.toString());
+            }
+        });
+
+
+
     }
 
     public HashMap<String, Double> setTotals() {
