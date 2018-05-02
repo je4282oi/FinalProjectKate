@@ -5,91 +5,84 @@ import java.util.HashMap;
  */
 public class month {
     private String name; //name of month Jan, Feb etc
-    private HashMap<String, Double> catsAndTotals; //homeTotal, groceriesTotal, foodOutTotal, travelTotal ...
+    private double homeTotal;
+    private double grocTotal;
+    private double foodOutTotal;
+    private double personalTotal;
+    private double travelTotal;
+    //private HashMap<String, Double> catsAndTotals; //homeTotal, groceriesTotal, foodOutTotal, travelTotal ...
     private double totalSaved; //any wages earned above spending goes here
 
     //Constructor for basic month object with data given
-    month (String name, HashMap<String, Double> catsAndTotals, Double totalSaved) {
-        name = this.name;
-        totalSaved = this.totalSaved;
-        /*HashMap<String, Double> temp = new HashMap<>(); */
-        catsAndTotals = this.catsAndTotals;
+    month (String name, double home, double groc, double foodOut, double travel, double totalSaved) {
+        this.name = name;
+        this.homeTotal = home;
+        this.foodOutTotal = foodOut;
+        this.grocTotal = groc;
+        this.travelTotal = travel;
+        this.totalSaved = totalSaved;
     }
 
     //Constructor for blank month object
     month () {
         this.name ="";
-        this.catsAndTotals = new HashMap<>();
-        catsAndTotals.put("homeTotal", 0.0);
-        catsAndTotals.put("groceriesTotal", 0.0);
-        catsAndTotals.put("foodOutTotal", 0.0);
-        catsAndTotals.put("travelTotal", 0.0);
-        catsAndTotals.put("personalTotal", 0.0);
+        this.homeTotal = 0.0;
+        this.grocTotal = 0.0;
+        this.foodOutTotal = 0.0;
+        this.travelTotal =  0.0;
+        this.personalTotal = 0.0;
         this.totalSaved = 0.0;
     }
 
-    //Month Methods
+    //*****************Month Methods*****************
 
     //SetMonth
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {        this.name = name;    }
 
-    public void setCatsAndTotals(HashMap<String, Double> catsAndTotals) {
-        this.catsAndTotals = catsAndTotals;
-    }
+    public void setHomeTotal (double homeTotal) { this.homeTotal = homeTotal;}
 
-    public void setTotalSaved(double totalSaved) {
-        this.totalSaved = totalSaved;
-    }
+    public void setGrocTotal(double grocTotal) {        this.grocTotal = grocTotal;    }
+
+    public void setFoodOutTotal(double foodOutTotal) {        this.foodOutTotal = foodOutTotal;    }
+
+    public void setPersonalTotal(double personalTotal) {        this.personalTotal = personalTotal;    }
+
+    public void setTravelTotal(double travelTotal) {        this.travelTotal = travelTotal;    }
+
+    public void setTotalSaved(double totalSaved) {         this.totalSaved = totalSaved;    }
 
     //GetMonth
-
-    public String getName() {
-        return name;
-    }
-
-    public HashMap<String, Double> getCatsAndTotals() {
-        return catsAndTotals;
-    }
-
-    public double getTotalSaved() {
-        return totalSaved;
-    }
+    public String getName() {   return this.name;     }
 
     //GetTotals
+    public double getHomeTotal () {        return this.homeTotal;    }
 
-    public double getHomeTotal () {
-        //Returns value associated with given key:
-        return catsAndTotals.get("homeTotal");
-    }
+    public double getGrocTotal () {       return this.grocTotal;    }
 
-    public double getGrocTotal () {
-        //Returns value associated with given key:
-        return catsAndTotals.get("grocTotal");
-    }
+    public double getFoodOutTotal () {    return this.foodOutTotal;    }
 
-    public double getFoodOutTotal () {
-        //Returns value associated with given key:
-        return catsAndTotals.get("foodOutTotal");
-    }
+    public double getPersonalTotal () { return this.personalTotal;    }
 
-    public double getPersonalTotal () {
-        //Returns value associated with given key:
-        return catsAndTotals.get("personalTotal");
-    }
+    public double getTravelTotal () {        return this.travelTotal;    }
 
-    public double getTravelTotal () {
-        //Returns value associated with given key:
-        return catsAndTotals.get("travelTotal");
-    }
-
-    //etc
 
     //CalculateTotalMonth'sSpending
-    public double getTotalSpent () {
-        return getHomeTotal(); //+ //etc
+    public double getTotalSpent () { return (getHomeTotal() + getFoodOutTotal() + getGrocTotal() +
+        getTravelTotal() +getPersonalTotal());
     }
+
+
+    public double getTotalSaved () {
+        double foodBudget = 400;
+        double travelBudget = 200;
+        double personalBudget = 100;
+        double homeBudget = 100;
+        double savings = 0.0;
+        savings += foodBudget - (getGrocTotal()+getFoodOutTotal());
+        savings += travelBudget - getTravelTotal();
+        savings += personalBudget - getPersonalTotal();
+        savings += homeBudget - getHomeTotal();
+        return (savings); }
 
     //GetPercentages
     public double getHomePercent() {
@@ -98,28 +91,30 @@ public class month {
 
     //etc
 
-    //SetTotals
-    public void setHomeTotal (double newTotal) {
-        catsAndTotals.put("homeTotal", newTotal);
-    }
 
-    //etc
-
-    //DisplayMethods
-    //using GUI
-
-
-    @Override
+    /*@Override
     public String toString() {
         return "month{" +
                 "name='" + name + '\'' +
-                ", homeTotal: " + getHomeTotal() + '\'' +
-                ", groceriesTotal: " + getGrocTotal() + '\''+
-                ", foodOutTotal: " + getFoodOutTotal() + '\'' +
-                ", travelTotal: " + getTravelTotal() + '\'' +
-                ", personalTotal: " + getPersonalTotal() + '\'' +
+                ", homeTotal=" + homeTotal +
+                ", grocTotal=" + grocTotal +
+                ", foodOutTotal=" + foodOutTotal +
+                ", personalTotal=" + personalTotal +
+                ", travelTotal=" + travelTotal +
                 ", totalSaved=" + totalSaved +
                 '}';
+    }*/
+
+    @Override
+    public String toString() {
+        return "Spending for: " + getName()  + "\n" +
+                "homeTotal: " + getHomeTotal() + "\n" +
+                "groceriesTotal: " + getGrocTotal() + "\n"+
+                "foodOutTotal: " + getFoodOutTotal() + "\n" +
+                "travelTotal: " + getTravelTotal() + "\n" +
+                "personalTotal: " + getPersonalTotal() + "\n" +
+                "totalSpent: " + getTotalSpent() + "\n" +
+                "totalSaved=" + getTotalSaved();
     }
 }
 
