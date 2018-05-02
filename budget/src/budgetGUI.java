@@ -38,7 +38,6 @@ public class budgetGUI extends JFrame{
 
     month newMonth = new month();
 
-
     //constructor:
     budgetGUI (budget_Manager manager) {
 
@@ -47,7 +46,7 @@ public class budgetGUI extends JFrame{
         //Populates comboBox with static types of purchase
         setComboBox();
         actionHandling();
-        //setJList();
+        setJList();
 
         setContentPane(mainPanel);
 
@@ -56,6 +55,30 @@ public class budgetGUI extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         previewMonthTextArea.setText("Generated preview here");
+    }
+
+    //Reset after new month created
+    public void resetFields() {
+        whichMonthTextField.setText("");
+        purchaseAmountTextField.setText("");
+
+    }
+
+    //At the beginning and after new month added
+    public void setJList() {
+
+        DefaultListModel<month> newList = new DefaultListModel<>();
+
+        if (monthStore.returnAllMonths()!=null) {
+            if (monthStore.returnAllMonths().size() > 0) {
+                for (month m : monthStore.returnAllMonths()) {
+                    newList.addElement(m);
+                }
+            }
+        }
+
+        recentMonthsList.setModel(newList);
+
     }
 
     public void setComboBox() {
@@ -104,6 +127,7 @@ public class budgetGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 //setContentPane(displayPanel);
                 previewMonthTextArea.setText(newMonth.toString());
+                resetFields();
             } });
 
         //Click to add the month data to monthStore
@@ -118,7 +142,9 @@ public class budgetGUI extends JFrame{
                 //monthToSave = readMonth(lines);
                 monthStore.addMonthfromString(lines);
                 //monthStore.add(monthToSave);
+                setJList();
             }  });
+
 
     }
 

@@ -61,7 +61,7 @@ public class month {
 
     public double getFoodOutTotal () {    return this.foodOutTotal;    }
 
-    public double getPersonalTotal () { return this.personalTotal;    }
+    public double getPersonalTotal () {     return this.personalTotal;    }
 
     public double getTravelTotal () {        return this.travelTotal;    }
 
@@ -90,20 +90,6 @@ public class month {
     }
 
     //etc
-
-
-    /*@Override
-    public String toString() {
-        return "month{" +
-                "name='" + name + '\'' +
-                ", homeTotal=" + homeTotal +
-                ", grocTotal=" + grocTotal +
-                ", foodOutTotal=" + foodOutTotal +
-                ", personalTotal=" + personalTotal +
-                ", travelTotal=" + travelTotal +
-                ", totalSaved=" + totalSaved +
-                '}';
-    }*/
 
     @Override
     public String toString() {
