@@ -12,13 +12,13 @@ public class month {
     public month (String name, HashMap<String, Double> catsAndTotals, Double totalSaved) {
         name = this.name;
         totalSaved = this.totalSaved;
-        HashMap<String, Double> temp = new HashMap<>();
+        /*HashMap<String, Double> temp = new HashMap<>();
         temp.put("homeTotal", 0.0);
         temp.put("groceriesTotal", 0.0);
         temp.put("foodOutTotal", 0.0);
         temp.put("travelTotal", 0.0);
-        temp.put("personalTotal", 0.0);
-        catsAndTotals = temp;
+        temp.put("personalTotal", 0.0);*/
+        catsAndTotals = this.catsAndTotals;
     }
 
     //Month Methods
