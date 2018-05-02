@@ -14,13 +14,13 @@ public class month {
     private double totalSaved; //any wages earned above spending goes here
 
     //Constructor for basic month object with data given
-    month (String name, double home, double groc, double foodOut, double travel, double totalSaved) {
+    month (String name, double home, double groc, double foodOut, double travel, double personal) {
         this.name = name;
         this.homeTotal = home;
         this.foodOutTotal = foodOut;
         this.grocTotal = groc;
         this.travelTotal = travel;
-        this.totalSaved = totalSaved;
+        this.personalTotal = personal;
     }
 
     //Constructor for blank month object

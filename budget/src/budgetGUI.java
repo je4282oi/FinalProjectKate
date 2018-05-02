@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 
 /**
@@ -70,15 +71,6 @@ public class budgetGUI extends JFrame{
         //TODO:?? Set so that dataEntryPanel only displays when addMonth pushed
         //Use Custom Create?
 
-        //Set newMonth's name using object setter
-        addMonthButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (whichMonthTextField !=null) {
-                    newMonth.setName(whichMonthTextField.getText());
-                }
-            }  });
-
         purchaseTypeComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,14 +79,22 @@ public class budgetGUI extends JFrame{
             }
         });
 
+        //Set newMonth's name
+        whichMonthTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = "";
+                if (whichMonthTextField.getText() != null) {
+                    name = whichMonthTextField.getText();
+                    newMonth.setName(name);
+                } }  });
+
         //Set newMonth's hashmap reading info from boxes, each time pushed
         addPurchaseAmountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (purchaseTypeComboBox.getSelectedItem() == typeHome) {
-                    comboBoxStatusDescriptionLabel.setText("Entering purchase data for home:");
-            }
                 setTotals();
+                setName(whichMonthTextField.getText());
             } });
 
         //Preview newMonth's data
@@ -105,6 +105,8 @@ public class budgetGUI extends JFrame{
                 previewMonthTextArea.setText(newMonth.toString());
             } });
 
+        //Click to add the month data to monthStore
+        // then... TODO: write information to file
         saveToFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,8 +115,7 @@ public class budgetGUI extends JFrame{
                 String [] lines = previewMonthTextArea.getText().split("\\n");
                 monthToSave = readMonth(lines);
                 monthStore.add(monthToSave);
-            }
-        });
+            }  });
 
     }
 
@@ -123,17 +124,17 @@ public class budgetGUI extends JFrame{
         double ht = 0.0, gt = 0.0, ft = 0.0, pt = 0.0, tt = 0.0;
         for (String t : text) {
             if (t.contains("for:"))
-                n = t.substring(t.indexOf(": "));
-            if (t.contains("homeTotal"))
-                ht = Double.parseDouble(t.substring(t.indexOf("= ")+1));
-            if (t.contains("grocTotal"))
-                gt = Double.parseDouble(t.substring(t.indexOf("= ")));
-            if (t.contains("foodOutTotal"))
-                ft = Double.parseDouble(t.substring(t.indexOf("= ")));
-            if (t.contains("personalTotal"))
-                pt = Double.parseDouble(t.substring(t.indexOf("= ")));
-            if (t.contains("travelTotal"))
-                tt = Double.parseDouble(t.substring(t.indexOf("= ")));
+                n = t.substring(t.indexOf(": ")+1);
+            if (t.contains("homeTotal:"))
+                ht = Double.parseDouble(t.substring(t.indexOf(": ")+1));
+            if (t.contains("groceriesTotal:"))
+                gt = Double.parseDouble(t.substring(t.indexOf(": ")+1));
+            if (t.contains("foodOutTotal:"))
+                ft = Double.parseDouble(t.substring(t.indexOf(": ")+1));
+            if (t.contains("personalTotal:"))
+                pt = Double.parseDouble(t.substring(t.indexOf(": ")+1));
+            if (t.contains("travelTotal:"))
+                tt = Double.parseDouble(t.substring(t.indexOf(": ")+1));
         }
         month temp = new month (n, ht, gt, ft, pt, tt);
         return temp;
