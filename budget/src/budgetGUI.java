@@ -38,6 +38,7 @@ public class budgetGUI extends JFrame{
 
     month newMonth = new month();
 
+
     //constructor:
     budgetGUI (budget_Manager manager) {
 
@@ -108,37 +109,19 @@ public class budgetGUI extends JFrame{
         //Click to add the month data to monthStore
         // then... TODO: write information to file
         saveToFileButton.addActionListener(new ActionListener() {
+            String [] lines = new String [8];
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Too easy?! monthStore.add(newMonth);
-                month monthToSave = new month();
-                String [] lines = previewMonthTextArea.getText().split("\\n");
-                monthToSave = readMonth(lines);
-                monthStore.add(monthToSave);
+                //month monthToSave = new month();
+                lines = previewMonthTextArea.getText().split("\\n");
+                //monthToSave = readMonth(lines);
+                monthStore.addMonthfromString(lines);
+                //monthStore.add(monthToSave);
             }  });
 
     }
 
-    public month readMonth(String[] text) {
-        String n= "";
-        double ht = 0.0, gt = 0.0, ft = 0.0, pt = 0.0, tt = 0.0;
-        for (String t : text) {
-            if (t.contains("for:"))
-                n = t.substring(t.indexOf(": ")+1);
-            if (t.contains("homeTotal:"))
-                ht = Double.parseDouble(t.substring(t.indexOf(": ")+1));
-            if (t.contains("groceriesTotal:"))
-                gt = Double.parseDouble(t.substring(t.indexOf(": ")+1));
-            if (t.contains("foodOutTotal:"))
-                ft = Double.parseDouble(t.substring(t.indexOf(": ")+1));
-            if (t.contains("personalTotal:"))
-                pt = Double.parseDouble(t.substring(t.indexOf(": ")+1));
-            if (t.contains("travelTotal:"))
-                tt = Double.parseDouble(t.substring(t.indexOf(": ")+1));
-        }
-        month temp = new month (n, ht, gt, ft, pt, tt);
-        return temp;
-    }
 
     public void setTotals() {
         //Set amount entered into correct total in catsAndTotals

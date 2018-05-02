@@ -27,6 +27,8 @@ public class budget_Manager {
                 QUIT + ". Quit"};
 
         budgetGUI BudgetGUI = new budgetGUI(this);
+
+        monthStore MonthStore;
                 /* The main menu */
         void manageCalls() {
 

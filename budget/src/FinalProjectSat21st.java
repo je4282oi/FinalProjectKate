@@ -2,11 +2,20 @@
 
 public class FinalProjectSat21st {
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
 
         budget_Manager manager = new budget_Manager();
-        manager.manageCalls();
+        monthStore MonthStore = new monthStore();
 
+        manager.manageCalls();
+        FinalProjectSat21st.start();
+    }
+    void start() {
+        createMonthList();
+    }
+
+    protected void createMonthList() {
+        MonthStore = new monthStore();
     }
 
 }
