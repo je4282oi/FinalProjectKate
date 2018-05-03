@@ -108,16 +108,23 @@ public class budgetGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = "";
-                if (whichMonthTextField.getText() != null) {
+                if ((whichMonthTextField.getText() != null) && (!whichMonthTextField.getText().isEmpty())) {
                     name = whichMonthTextField.getText();
                     newMonth.setName(name);
-                } }  });
+                }
+                else
+                    JOptionPane.showMessageDialog(budgetGUI.this, "Enter a month!");
+            }  });
 
         //Set newMonth's hashmap reading info from boxes, each time pushed
         addPurchaseAmountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setTotals();
+                try {
+                    setTotals();
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(budgetGUI.this, "Amount must be number");
+                }
                 setName(whichMonthTextField.getText());
             } });
 
